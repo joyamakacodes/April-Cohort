@@ -1,8 +1,9 @@
 import React from 'react';
 import { ProductsData } from '../data/ProductsData';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Products = () => {
+const Products = ({count}) => {
   return (
     <div>
       {
@@ -16,8 +17,15 @@ const Products = () => {
           </div>
         ))
       }
+      <p>You have {count} items in your cart.</p>
     </div>
   );
 }
 
-export default Products;
+const mapStateToProps=(state)=>(
+{
+  count: state.count.count
+}
+)
+
+export default connect(mapStateToProps)(Products);

@@ -1,8 +1,9 @@
 import React from 'react';
 import { PrimaryButton, SecButton } from '../components/Button';
 import { useState } from 'react';
+import { connect } from 'react-redux';
 
-const Home = () => {
+const Home = ({counts}) => {
   const [boy, setBoy]= useState('')
   const [count, setCount] = useState(0)
   const [objects, setObjects]= useState({
@@ -52,8 +53,15 @@ const handleObject=()=>{
       <SecButton click={handleObject}>
         object 
       </SecButton>
+      <h2>I am {counts} years old</h2>
     </div>
   );
 }
 
-export default Home;
+const mapStateToProps=(state)=>(
+{
+  counts: state.count
+}
+)
+
+export default connect(mapStateToProps)(Home);
